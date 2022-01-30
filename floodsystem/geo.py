@@ -18,7 +18,14 @@ def stations_by_distance(stations,p):
         stationslist.append(temp) # adds the individual list to the station list
     orderedstations = sorted_by_key(stationslist, 2) # generates an ordered list by distance, the third entry
     return orderedstations
-  
 
-
-
+def rivers_with_station(stations):
+    """" Function that returns the name of the rivers with monitoring stations"""
+    riverlist = [] # creates an empty list which will be used to store the rivers
+    for station in stations:
+        newriver = station.river
+        if newriver in riverlist:
+            newriver = 0
+        else:
+            riverlist.append(newriver)
+    return riverlist
