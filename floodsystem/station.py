@@ -38,6 +38,8 @@ class MonitoringStation:
         d += "   typical range: {}".format(self.typical_range)
         return d
 
+
+
     def typical_range_consistent(self):
         if self.typical_range == None:
             return False
@@ -45,4 +47,5 @@ class MonitoringStation:
             return False
         else:
             return True
-            
+
+
