@@ -46,7 +46,7 @@ class MonitoringStation:
         elif self.typical_range[0] >= self.typical_range[1]:
             return False
         else:
-            return True
+            return True 
 
 def inconsistent_typical_range_stations(stations):
     inconsistentstations = []
@@ -55,6 +55,6 @@ def inconsistent_typical_range_stations(stations):
         if check == False:
             inconsistentstations.append(station.name)
     inconsistentstations.sort()
+    return inconsistentstations
 
-    print("The stations with inconsistent water level ranges are ", inconsistentstations)
-    print(" The number of stations with inconsistent water level ranges is", len(inconsistentstations))
+
