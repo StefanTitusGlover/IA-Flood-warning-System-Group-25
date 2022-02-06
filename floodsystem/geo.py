@@ -62,24 +62,34 @@ def rivers_by_station_number(stations, N):
     num_stations = []
     rivers = rivers_with_station(stations)
     for river in rivers:
-        total = []
+        total = 0
         for station in stations:
             if river == station.river:
                 total += 1
-    num_stations.append(river, total)
-    ordnum_stations = sorted_by_key(num_stations, 1)
-    
-    i = 0 #indicates Nth position  note: ask what happens if other positions hace same values
-    while i <= N :
-        final_rivers = []
-        final_rivers.append(ordnum_stations[i])
-    
-        if ordnum_stations[i][1] == ordnum_stations[i + 1][1]:
-            final_rivers.append(ordnum_stations[i + 1][1])
-            i += 1
-            N += 1
+        temp = (river, total)
+        num_stations.append(temp)
+    ordnum_stations = sorted_by_key(num_stations, 1, True)
+ 
+
+    i = 0 
+    final_rivers = []
+    while i <= N-1 :
+        
+        if i < N-1:
+            final_rivers.append(ordnum_stations[i])  
+            i += 1             
         else:
-            i += 1
+            if ordnum_stations[i][1] > ordnum_stations[i + 1][1]:
+                final_rivers.append(ordnum_stations[i])
+                i += 1
+            elif ordnum_stations[i][1] == ordnum_stations[i + 1][1]:
+                final_rivers.append(ordnum_stations[i])
+                i += 1
+                N += 1
+            else:
+                i += 1
+
     return final_rivers 
-            
+             
+
 
