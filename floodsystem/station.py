@@ -3,7 +3,6 @@
 # SPDX-License-Identifier: MIT
 """This module provides a model for a monitoring station, and tools
 for manipulating/modifying station data
-
 """
 
 
@@ -39,21 +38,13 @@ class MonitoringStation:
         d += "   typical range: {}".format(self.typical_range)
         return d
 
-def typical_range_consisten(self):
-    """Function that checks if data is consistent"""
 
-    if self.typical_range[0] < self.typical_range[1]:
-        return True
-    else:
-        return False
-
-def inconsistent_typical_range_consistent(stations):
-    """Function to detect any inconsisten data some of the stations might have"""
-
-    incon_stations = [] #empty list of stations with inconsistent data
-    for station in stations:
-        if typical_range.station == False:
-            incon_stations.append(station)
-    return incon_stations
-
-        
+=======
+    def typical_range_consistent(self):
+        if self.typical_range == None:
+            return False
+        elif self.typical_range[0] >= self.typical_range[1]:
+            return False
+        else:
+            return True
+>>>>>>> 3058076b75f821753fce030b83d7332b78f07f04
