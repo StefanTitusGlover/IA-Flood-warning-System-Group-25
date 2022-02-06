@@ -8,7 +8,7 @@ def run():
 
     stations_all = build_station_list()
 
-    centre = (52.2053, 0.1218) 
+    centre = (52.2053, 0.1218) #coordinates for centre of cambridge
 
     stationslist = (stations_within_radius(stations_all, centre, 10))
     ordered_stationslist = sorted_by_key(stationslist, 0)
