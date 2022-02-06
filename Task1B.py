@@ -12,4 +12,5 @@ def run():
     print(orderedlist[-10:]) # print the last 10 items of the list
 
 if __name__ == "__main__":
+    print("***Task 1B: CUED Part IA Flood Warning System***")
     run()

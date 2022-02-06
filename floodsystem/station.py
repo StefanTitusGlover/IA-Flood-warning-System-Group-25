@@ -48,4 +48,13 @@ class MonitoringStation:
         else:
             return True
 
+def inconsistent_typical_range_stations(stations):
+    inconsistentstations = []
+    for station in stations:
+        check = station.typical_range_consistent()
+        if check == False:
+            inconsistentstations.append(station.name)
+    inconsistentstations.sort()
 
+    print("The stations with inconsistent water level ranges are ", inconsistentstations)
+    print(" The number of stations with inconsistent water level ranges is", len(inconsistentstations))
