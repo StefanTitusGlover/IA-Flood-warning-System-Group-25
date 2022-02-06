@@ -19,14 +19,13 @@ def stations_by_distance(stations,p):
     orderedstations = sorted_by_key(stationslist, 2) # generates an ordered list by distance, the third entry
     return orderedstations
 
-def stations_within_radius(stations, centre, r):
-    #Function that gives a list of all stations within a given radius
-    r = input() #takes variable r from user input
+def stations_within_radius(stations, centre, r): #Function that gives a list of all stations within a given radius
     stations_in_r = [] 
     for station in stations:
         distance = haversine(station.coord, centre)
         if distance < r:
-            stations_in_r.append(station)
+            stations_in_r.append(station.name)
+    stations_in_r.sort()
     return stations_in_r
 
 def rivers_with_station(stations):
