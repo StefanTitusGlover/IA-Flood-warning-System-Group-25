@@ -55,3 +55,6 @@ def test_reverse_sort():
     assert list1[0] == c
     assert list1[1] == a
     assert list1[2] == b
+
+test_reverse_sort()
+test_sort()

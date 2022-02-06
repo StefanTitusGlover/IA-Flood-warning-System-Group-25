@@ -28,3 +28,6 @@ def test_update_level():
             counter += 1
 
     assert counter > 0
+
+test_build_station_list()
+test_update_level()

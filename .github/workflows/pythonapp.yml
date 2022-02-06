@@ -35,6 +35,10 @@ jobs:
         run: | 
           pytest -v
           pytest test_geo.py
+          pytest test_datafetcher.py
+          pytest test_station.py
+          pytest test_stationdata.py
+          pytest test_utils.py
 
       - name: Run Deliverable 1 code
         run: |
