@@ -8,6 +8,13 @@ geographical data.
 
 from .utils import sorted_by_key  # noqa
 from haversine import haversine, Unit # imports the haversine function
+import matplotlib
+import matplotlib.pyplot as plt
+
+
+import datetime
+from floodsystem.datafetcher import fetch_measure_levels
+from floodsystem.stationdata import build_station_list
 
 def stations_by_distance(stations,p):
     """" Function that  orders a list of stations by distance to a given location"""
@@ -90,6 +97,51 @@ def rivers_by_station_number(stations, N):
                 i += 1
 
     return final_rivers 
-             
+def station_history(name,days_back):
+
+    stations = build_station_list() # Build list of stations    
+    station_name = name # Station name to find
+    station_profile = None
+    for station in stations:
+        if station.name == station_name:
+            station_profile = station
+            break
+
+    if not station_profile:    # Check that station could be found. Return if not found.
+        print("Station {} could not be found".format(station_name))
+        return
+
+    dt = days_back
+    dates, levels = fetch_measure_levels(
+        station_profile.measure_id, dt=datetime.timedelta(days=dt))
+    return station_profile, dates, levels
+
+def plot_water_levels(station,dates,levels): # This function needs to be tested
+    name = station.name
+    if station.typical_range_consistent() == True: # if the station's typical levels meet the consistency check the upper and lower values are taken so that they can be plotted
+        lower = station.typical_range[0]
+        lower_level = [lower] * len(dates) # Makes an array of the lower value of the correct length for plotting
+        upper = station.typical_range[1]
+        upper_level = [upper] * len(dates) # Makes an array of the upper value of the correct length for plotting
+
+    if station.typical_range_consistent() == True:
+        plt.plot(dates,levels)
+        plt.plot(dates,lower_level)
+        plt.plot(dates,upper_level)
+
+        plt.xlabel('Date')
+        plt.ylabel('Water level /m')
+        plt.xticks(rotation=45);
+        plt.legend(["Actual Level", "Lower typical boundary", "Upper typical boundary"])
+        plt.title("Water level of " + str(station.name))
+        plt.show()
+    
+    else:
+        plt.plot(dates,levels)
+        plt.xlabel('Date')
+        plt.ylabel('Water level /m')
+        plt.xticks(rotation=45);
+        plt.title("Water level of " + str(station.name))
+        plt.show()             
 
 

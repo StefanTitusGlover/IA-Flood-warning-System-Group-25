@@ -5,7 +5,6 @@
 for manipulating/modifying station data
 """
 
-
 class MonitoringStation:
     """This class represents a river level monitoring station"""
 
@@ -56,5 +55,4 @@ def inconsistent_typical_range_stations(stations):
             inconsistentstations.append(station.name)
     inconsistentstations.sort()
     return inconsistentstations
-
 

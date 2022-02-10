@@ -1,4 +1,5 @@
 from distutils.command.build import build
+import imp
 from haversine import haversine, Unit
 from floodsystem.stationdata import build_station_list
 from floodsystem.geo import stations_by_distance
@@ -6,6 +7,9 @@ from floodsystem.geo import stations_within_radius
 from floodsystem.geo import rivers_with_station
 from floodsystem.geo import stations_by_river
 from floodsystem.geo import rivers_by_station_number
+from floodsystem.geo import station_history
+from floodsystem.geo import plot_water_levels
+import datetime
 
 def test_stations_by_distance_types(): # Testing the stations_by_distance function
     stationlist = build_station_list() # builds a list of all the stations
@@ -91,6 +95,17 @@ def test_rivers_by_station_number():
     while i < (len(rivs_most_stations) - 1):
         assert rivs_most_stations[i][1] >= rivs_most_stations[i+1][1] #should return tuples in decr order
         i += 1
+
+def test_station_history():
+    stationlist = build_station_list()
+    Days = 2
+    name = "Cam"
+    station_profile,dates,levels = station_history(name,Days)
+    assert type(dates) == list
+    assert type(levels) == list
+    assert type(levels[0]) == float # Types are checked
+    delta = dates[0].date() - dates[-1].date() # checks that the number of days worth of data is the same as the requested number
+    assert datetime.timedelta(days = Days) == delta
     
 test_stations_by_distance_types()
 test_stations_by_distance_functionality()
@@ -99,5 +114,6 @@ test_stations_within_radius_functionality()
 test_rivers_with_stations()
 test_stations_by_river()
 test_rivers_by_station_number()
+test_station_history()
 
-#note to try and save
+
