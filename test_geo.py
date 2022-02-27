@@ -107,6 +107,7 @@ def test_station_history():
     delta = dates[0].date() - dates[-1].date() # checks that the number of days worth of data is the same as the requested number
     assert datetime.timedelta(days = Days) == delta
     
+    
 test_stations_by_distance_types()
 test_stations_by_distance_functionality()
 test_stations_within_radius_types()

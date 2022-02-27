@@ -39,6 +39,7 @@ jobs:
           pytest test_station.py
           pytest test_stationdata.py
           pytest test_utils.py
+          pytest test_flood.py
 
       - name: Run Deliverable 1 code
         run: |

@@ -18,16 +18,11 @@ def test_stations_highest_rel_level():
     assert len(high_stations) == 10
     assert type(high_stations) == list
     level_list = []
-    for i in range(len(high_stations)):
-        level_list.append(high_stations[i][1]) #makes list of the values of relative level
-        for j in range(len(high_stations) -1):
-            assert level_list[j] >= level_list[j+1]
-            assert type(level_list[j]) == tuple
-
-
-
-
-
+    for station in  high_stations:
+        assert type
+        level_list.append(station.relative_water_level())
+    for i in range(len(level_list)-1):
+        assert level_list[i] >= level_list[i+1]
 
 
 test_stations_level_over_threshold()
