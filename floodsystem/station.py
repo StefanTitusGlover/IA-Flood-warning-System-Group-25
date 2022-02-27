@@ -5,6 +5,9 @@
 for manipulating/modifying station data
 """
 
+from pickle import TRUE
+
+
 class MonitoringStation:
     """This class represents a river level monitoring station"""
 
@@ -35,6 +38,7 @@ class MonitoringStation:
         d += "   town:          {}\n".format(self.town)
         d += "   river:         {}\n".format(self.river)
         d += "   typical range: {}".format(self.typical_range)
+        d += "   latest level: {}".format(self.latest_level)
         return d
 
 
@@ -46,6 +50,16 @@ class MonitoringStation:
         else:
             return True 
 
+    def relative_water_level(self):        
+        if (self.typical_range_consistent == False) or (self.latest_level == None):
+            return None
+        else:
+            den = self.typical_range[1] - self.typical_range[0] #finds value of the range
+            num = self.latest_level - self.typical_range[0] #where latest level lies within range
+            ratio = num / den
+            return ratio
+
+
 
 def inconsistent_typical_range_stations(stations):
     inconsistentstations = []
@@ -56,18 +70,12 @@ def inconsistent_typical_range_stations(stations):
     inconsistentstations.sort()
     return inconsistentstations
 
+def consistent_typical_range_stations(stations): # creates a list of consistent water stations with a water level that is not none
+    consistent_stations = []
+    for station in stations:
+        check = station.typical_range_consistent()
+        water_level = station.latest_level
+        if (check == True) and (water_level != None):
+            consistent_stations.append(station)
+    return consistent_stations
 
-def relative_water_level(self):
-    if self.typical_range_consistent == True:
-        den = self.typical_range[1] - self.typical_range[0] #finds value of the range
-        num = self.latest_level - self.typical_range[0] #where latest level lies within range
-        ratio = num/den
-
-        return ratio
-    else:
-        return None
-
-    
-
-    
-              
