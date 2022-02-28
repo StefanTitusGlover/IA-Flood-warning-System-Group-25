@@ -1,12 +1,12 @@
-from floodsystem.station import consistent_typical_range_stations
+from floodsystem.geo import station_history
+from floodsystem.geo import plot_water_levels
 from floodsystem.stationdata import build_station_list, update_water_levels
+from floodsystem.flood import stations_highest_rel_level
+from floodsystem.datafetcher import fetch_measure_levels
+import datetime
 
-stations = build_station_list()
-update_water_levels(stations)
-consistent_stations = consistent_typical_range_stations(stations)
-for station in consistent_stations:
-    den = station.typical_range[1] - station.typical_range[0] #finds value of the range
-    num = station.latest_level - station.typical_range[0] #where latest level lies within range
-    ratio = num / den
-    print(ratio)
-    
+station_profile,dates,levels = station_history("Letcombe Bassett",2)
+dates, levels = fetch_measure_levels(
+        station_profile.measure_id, dt=datetime.timedelta(days=10))
+print(dates)
+

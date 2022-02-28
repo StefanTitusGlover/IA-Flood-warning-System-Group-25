@@ -14,17 +14,17 @@ def run():
     stations = build_station_list()
 
     # Station name to find
-    station_name = "Cam"
+    station_name = "Hayes Basin"
 
     # Find station
-    station_cam = None
+    station_hayes = None
     for station in stations:
         if station.name == station_name:
-            station_cam = station
+            station_hayes = station
             break
 
     # Check that station could be found. Return if not found.
-    if not station_cam:
+    if not station_hayes:
         print("Station {} could not be found".format(station_name))
         return
 
@@ -40,7 +40,7 @@ def run():
     # Fetch data over past 2 days
     dt = 2
     dates, levels = fetch_measure_levels(
-        station_cam.measure_id, dt=datetime.timedelta(days=dt))
+        station_hayes.measure_id, dt=datetime.timedelta(days=dt))
 
     # Print level history
     for date, level in zip(dates, levels):
