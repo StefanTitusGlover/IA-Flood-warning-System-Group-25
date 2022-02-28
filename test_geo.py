@@ -8,7 +8,6 @@ from floodsystem.geo import rivers_with_station
 from floodsystem.geo import stations_by_river
 from floodsystem.geo import rivers_by_station_number
 from floodsystem.geo import station_history
-from floodsystem.geo import plot_water_levels
 import datetime
 
 def test_stations_by_distance_types(): # Testing the stations_by_distance function
