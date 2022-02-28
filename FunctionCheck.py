@@ -5,8 +5,13 @@ from floodsystem.flood import stations_highest_rel_level
 from floodsystem.datafetcher import fetch_measure_levels
 import datetime
 
-station_profile,dates,levels = station_history("Letcombe Bassett",2)
-dates, levels = fetch_measure_levels(
-        station_profile.measure_id, dt=datetime.timedelta(days=10))
-print(dates)
-
+stationlist = build_station_list()
+Days = 2
+name = "Hayes Basin"
+station_profile,dates,levels = station_history(name,Days)
+assert type(dates) == list
+assert type(levels) == list
+assert type(levels[0]) == float # Types are checked
+delta = dates[0].date() - dates[-1].date() # checks that the number of days worth of data is the same as the requested number
+print(delta)
+print(datetime.timedelta(days = Days))

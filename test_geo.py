@@ -99,12 +99,13 @@ def test_rivers_by_station_number():
 def test_station_history():
     stationlist = build_station_list()
     Days = 2
-    name = "Cam"
+    name = "Hayes Basin"
     station_profile,dates,levels = station_history(name,Days)
     assert type(dates) == list
     assert type(levels) == list
     assert type(levels[0]) == float # Types are checked
     delta = dates[0].date() - dates[-1].date() # checks that the number of days worth of data is the same as the requested number
+    print(delta)
     assert datetime.timedelta(days = Days) == delta
     
     
