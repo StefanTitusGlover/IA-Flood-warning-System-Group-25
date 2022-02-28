@@ -106,6 +106,7 @@ def station_history(name,days_back):
         if station.name == station_name:
             station_profile = station
             break
+        
 
     if not station_profile:    # Check that station could be found. Return if not found.
         print("Station {} could not be found".format(station_name))
