@@ -40,6 +40,8 @@ jobs:
           pytest test_stationdata.py
           pytest test_utils.py
           pytest test_flood.py
+          pytest test_analysis.py
+          pytest test_plot.py          -
 
       - name: Run Deliverable 1 code
         run: |
@@ -58,3 +60,4 @@ jobs:
           python Task2D.py
           python Task2E.py
           python Task2F.py
+          python Task2G.py

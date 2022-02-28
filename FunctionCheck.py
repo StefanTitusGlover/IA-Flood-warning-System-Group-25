@@ -8,7 +8,21 @@ from floodsystem.Plot import plot_water_level_with_fit
 from floodsystem.station import consistent_typical_range_stations
 
 
-station_profile,dates,levels = station_history("Upper Pound",2)
-poly = polyfit(dates,levels,4)
-grad = gradient_polyfit(dates,levels,4)
-print(poly,grad)
+
+stations = build_station_list()
+update_water_levels(stations)
+stationlist = consistent_typical_range_stations(stations)
+check = True
+for station in stationlist:
+    try:
+            station_profile,dates,levels = station_history(station.name,2)
+    except:
+            check = False
+    if check == True:
+        station_profile,dates,levels = station_history(station.name,2)
+        poly = polyfit(dates,levels,4)
+        grad = gradient_polyfit(dates,levels,4)
+        print(poly,grad)
+
+
+

@@ -8,6 +8,7 @@ for manipulating/modifying station data
 from pickle import TRUE
 
 
+
 class MonitoringStation:
     """This class represents a river level monitoring station"""
 
