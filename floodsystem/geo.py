@@ -118,32 +118,6 @@ def station_history(name,days_back):
         station_profile.measure_id, dt=datetime.timedelta(days=dt))
     return station_profile, dates, levels
 
-def plot_water_levels(station,dates,levels): # This function needs to be tested
-    name = station.name
-    if station.typical_range_consistent() == True: # if the station's typical levels meet the consistency check the upper and lower values are taken so that they can be plotted
-        lower = station.typical_range[0]
-        lower_level = [lower] * len(dates) # Makes an array of the lower value of the correct length for plotting
-        upper = station.typical_range[1]
-        upper_level = [upper] * len(dates) # Makes an array of the upper value of the correct length for plotting
-
-    if station.typical_range_consistent() == True:
-        plt.plot(dates,levels)
-        plt.plot(dates,lower_level)
-        plt.plot(dates,upper_level)
-
-        plt.xlabel('Date')
-        plt.ylabel('Water level /m')
-        plt.xticks(rotation=45);
-        plt.legend(["Actual Level", "Lower typical boundary", "Upper typical boundary"])
-        plt.title("Water level of " + str(station.name))
-        plt.show()
-    
-    else:
-        plt.plot(dates,levels)
-        plt.xlabel('Date')
-        plt.ylabel('Water level /m')
-        plt.xticks(rotation=45);
-        plt.title("Water level of " + str(station.name))
-        plt.show()             
+            
 
 

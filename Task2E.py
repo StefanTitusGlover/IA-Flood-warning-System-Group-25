@@ -1,5 +1,5 @@
 from floodsystem.geo import station_history
-from floodsystem.geo import plot_water_levels
+from floodsystem.Plot import plot_water_levels
 from floodsystem.stationdata import build_station_list, update_water_levels
 from floodsystem.flood import stations_highest_rel_level
 from floodsystem.datafetcher import fetch_measure_levels
@@ -17,7 +17,7 @@ def run():
         if len(dates) != 0: # station has valid data
             valid_stations.append(station)   
     highest_stations = valid_stations[0:5] # Takes the 5 highest stations
-    
+        
     for station in highest_stations:
         station_profile,dates,levels = station_history(station.name,10)
         plot_water_levels(station_profile,dates,levels)
