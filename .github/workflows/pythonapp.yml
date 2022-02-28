@@ -33,7 +33,6 @@ jobs:
 
       - name: Run unit tests using pytest
         run: | 
-          pytest -v
           pytest test_geo.py
           pytest test_datafetcher.py
           pytest test_station.py
@@ -41,6 +40,7 @@ jobs:
           pytest test_utils.py
           pytest test_flood.py
           pytest test_analysis.py
+
           pytest test_plot.py          -
 
       - name: Run Deliverable 1 code
