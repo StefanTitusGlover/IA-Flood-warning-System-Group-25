@@ -6,19 +6,20 @@ from floodsystem.station import consistent_typical_range_stations
 from floodsystem.Analysis import polyfit, gradient_polyfit, risk_levels
 from floodsystem.stationdata import build_station_list
 from floodsystem.flood import stations_highest_rel_level
+import numpy 
 
 def test_polyfit():
-    station_profile,dates,levels = station_history("Hayes basin",2)
+    station_profile,dates,levels = station_history("Hayes Basin",2)
     poly,shift = polyfit(dates,levels,4)
-    assert type(poly) == list
-    assert len(poly) == 4
-    assert type(poly[0]) == float
-    assert type(shift) == float
+    assert type(poly) == numpy.ndarray
+    assert len(poly) == 5
+    assert type(poly[0]) == numpy.float64
+    assert type(shift) == numpy.float64
 
 def test_gradient_polyfit():
-    station_profile,dates,levels = station_history("Hayes basin",2)
+    station_profile,dates,levels = station_history("Hayes Basin",2)
     gradient = gradient_polyfit(dates,levels,4)
-    assert type(gradient) == float
+    assert type(gradient) == numpy.float64
 
 def test_risk_levels():
     stations = build_station_list()
