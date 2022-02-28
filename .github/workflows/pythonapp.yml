@@ -40,7 +40,6 @@ jobs:
           pytest test_utils.py
           pytest test_flood.py
           pytest test_analysis.py
-
           pytest test_plot.py          -
 
       - name: Run Deliverable 1 code
